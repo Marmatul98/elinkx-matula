@@ -1,7 +1,7 @@
-import RegistrationForm from "./registration/RegistrationForm.tsx";
+import { RegistrationForm } from "./features/registration";
 
 function App() {
-  return <RegistrationForm/>
+  return <RegistrationForm />;
 }
 
-export default App
+export default App;
