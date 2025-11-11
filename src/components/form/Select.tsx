@@ -10,13 +10,14 @@ import { useField } from "formik";
 interface SelectProps extends BaseSelectProps {
   name: string;
   values: { value: string | number; label: string }[];
+  fullWidth?: boolean;
 }
 
-const Select = ({ name, values, label, ...props }: SelectProps) => {
+const Select = ({ name, values, label, fullWidth, ...props }: SelectProps) => {
   const [field, meta] = useField(name);
 
   return (
-    <FormControl>
+    <FormControl fullWidth={fullWidth}>
       <InputLabel id={`${name}-label`}>{label}</InputLabel>
       <MUISelect
         {...props}
@@ -26,7 +27,9 @@ const Select = ({ name, values, label, ...props }: SelectProps) => {
         label={label}
       >
         {values.map(({ value, label }) => (
-          <MenuItem value={value}>{label}</MenuItem>
+          <MenuItem key={value} value={value}>
+            {label}
+          </MenuItem>
         ))}
       </MUISelect>
     </FormControl>
