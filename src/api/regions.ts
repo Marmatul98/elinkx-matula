@@ -1,8 +1,8 @@
-export interface Regions {
+export interface Region {
   value: string;
   label: string;
 }
-const REGIONS: Regions[] = [
+const REGIONS: Region[] = [
   { value: "PHA", label: "Hlavní město Praha" },
   { value: "STC", label: "Středočeský kraj" },
   { value: "JHC", label: "Jihočeský kraj" },
@@ -19,7 +19,7 @@ const REGIONS: Regions[] = [
   { value: "MSK", label: "Moravskoslezský kraj" },
 ];
 
-export function fetchRegions(): Promise<Regions[]> {
+export function fetchRegions(): Promise<Region[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(REGIONS);

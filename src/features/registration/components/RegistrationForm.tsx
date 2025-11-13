@@ -4,7 +4,8 @@ import { Button, Grid, Typography } from "@mui/material";
 import { Select, TextField } from "../../../components/form";
 import registrationSchema from "../validation/registrationSchema.ts";
 import { useEffect, useState } from "react";
-import { fetchRegions, type Regions } from "../../../api/regions.ts";
+import { fetchRegions, type Region } from "../../../api/regions.ts";
+import { useTranslation } from "react-i18next";
 
 const initialValues: RegistrationFormValues = {
   firstName: "",
@@ -15,8 +16,9 @@ const initialValues: RegistrationFormValues = {
 };
 
 const RegistrationForm = () => {
-  const [regions, setRegions] = useState<Regions[]>([]);
+  const [regions, setRegions] = useState<Region[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const { t } = useTranslation();
 
   const handleSubmit = (values: RegistrationFormValues) => {
     console.log(values);
@@ -32,17 +34,17 @@ const RegistrationForm = () => {
   return (
     <Grid container spacing={2}>
       <Grid size={12}>
-        <Typography variant={"h3"}>Registrace</Typography>
+        <Typography variant={"h3"}>{t("registration.title")}</Typography>
       </Grid>
       <Grid size={12} container>
         <Grid size={12}>
-          <Typography variant={"h5"}>Registrační formulář</Typography>
+          <Typography variant={"h5"}>{t("registration.subTitle")}</Typography>
         </Grid>
         <Grid size={12} container>
           <Formik
             onSubmit={handleSubmit}
             initialValues={initialValues}
-            validationSchema={registrationSchema}
+            validationSchema={() => registrationSchema(t)}
           >
             <Form style={{ width: "100%" }}>
               <Grid container spacing={2}>
@@ -50,8 +52,8 @@ const RegistrationForm = () => {
                   <TextField
                     fullWidth
                     name={"firstName"}
-                    placeholder={"Vaše jméno"}
-                    label={"Jméno"}
+                    placeholder={t("registration.form.firstName.placeholder")}
+                    label={t("registration.form.firstName.label")}
                     loading={loading}
                   />
                 </Grid>
@@ -59,8 +61,8 @@ const RegistrationForm = () => {
                   <TextField
                     fullWidth
                     name={"lastName"}
-                    placeholder={"Vaše příjmení"}
-                    label={"Příjmení"}
+                    placeholder={t("registration.form.lastName.placeholder")}
+                    label={t("registration.form.lastName.label")}
                     loading={loading}
                   />
                 </Grid>
@@ -68,8 +70,8 @@ const RegistrationForm = () => {
                   <TextField
                     fullWidth
                     name={"username"}
-                    placeholder={"Vaše uživatelské jméno"}
-                    label={"Uživatelské jméno"}
+                    placeholder={t("registration.form.username.placeholder")}
+                    label={t("registration.form.username.label")}
                     loading={loading}
                   />
                 </Grid>
@@ -77,15 +79,15 @@ const RegistrationForm = () => {
                   <TextField
                     fullWidth
                     name={"email"}
-                    placeholder={"Váš e-mail"}
-                    label={"E-mail"}
+                    placeholder={t("registration.form.email.placeholder")}
+                    label={t("registration.form.email.label")}
                     loading={loading}
                   />
                 </Grid>
                 <Grid size={{ xs: 12, md: 6 }}>
                   <Select
                     fullWidth
-                    label={"Kraj"}
+                    label={t("registration.form.region.label")}
                     name={"region"}
                     values={regions}
                     loading={loading}
@@ -98,14 +100,14 @@ const RegistrationForm = () => {
                     color={"secondary"}
                     disabled={loading}
                   >
-                    VYMAZAT
+                    {t("registration.form.clear")}
                   </Button>
                   <Button
                     type={"submit"}
                     variant={"contained"}
                     disabled={loading}
                   >
-                    ODESLAT
+                    {t("registration.form.submit")}
                   </Button>
                 </Grid>
               </Grid>

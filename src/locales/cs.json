@@ -1,0 +1,32 @@
+{
+  "registration": {
+    "title": "Registrace",
+    "subTitle": "Registrační formulář",
+    "form": {
+      "firstName": {
+        "label": "Jméno",
+        "placeholder": "Vaše jméno"
+      },
+      "lastName": {
+        "label": "Příjmení",
+        "placeholder": "Vaše příjmení"
+      },
+      "username": {
+        "label": "Uživatelské jméno",
+        "placeholder": "Vaše uživatelské jméno",
+        "required": "Uživatelské jméno je povinné"
+      },
+      "email": {
+        "label": "E-mail",
+        "placeholder": "Váš e-mail",
+        "invalid": "Zadejte validní e-mail",
+        "required": "E-mail je povinný"
+      },
+      "region": {
+        "label": "Kraj"
+      },
+      "submit": "odeslat",
+      "clear": "vymazat"
+    }
+  }
+}
