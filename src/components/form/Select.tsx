@@ -4,6 +4,7 @@ import {
   InputLabel,
   MenuItem,
   Select as MUISelect,
+  Skeleton,
 } from "@mui/material";
 import { useField } from "formik";
 
@@ -11,12 +12,22 @@ interface SelectProps extends BaseSelectProps {
   name: string;
   values: { value: string | number; label: string }[];
   fullWidth?: boolean;
+  loading?: boolean;
 }
 
-const Select = ({ name, values, label, fullWidth, ...props }: SelectProps) => {
+const Select = ({
+  name,
+  values,
+  label,
+  fullWidth,
+  loading,
+  ...props
+}: SelectProps) => {
   const [field, meta] = useField(name);
 
-  return (
+  return loading ? (
+    <Skeleton variant={"rounded"} width={"100%"} height={56} />
+  ) : (
     <FormControl fullWidth={fullWidth}>
       <InputLabel id={`${name}-label`}>{label}</InputLabel>
       <MUISelect
